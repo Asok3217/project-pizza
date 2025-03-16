@@ -40,7 +40,7 @@ const Menu = ({ darkMode }) => {
                 </p>
                 <div className="flex justify-between items-center">
                   <span className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-black'}`}>
-                    ${menuItem.price}
+                    Rs.{menuItem.price}
                   </span>
                   <button 
                     className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${

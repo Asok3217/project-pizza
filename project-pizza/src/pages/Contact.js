@@ -63,20 +63,20 @@ const Contact = ({ darkMode }) => {
     {
       icon: <IoLocationOutline size={24} />,
       title: 'Visit Us',
-      content: '123 Pizza Street, NY 10001',
+      content: 'Pokhra-1,Bagar',
       description: 'Come taste the difference'
     },
     {
       icon: <IoMailOutline size={24} />,
       title: 'Email Us',
-      content: 'contact@pizzapalace.com',
+      content: 'contact@newarpizzapalace.com',
       description: 'We reply within 24 hours'
     },
     {
       icon: <IoCallOutline size={24} />,
       title: 'Call Us',
-      content: '+1 (555) 123-4567',
-      description: 'Mon-Sun 10am - 10pm'
+      content: '+61 984256',
+      description: 'Sun-Fri 10am - 10pm'
     },
     {
       icon: <IoTimeOutline size={24} />,
@@ -87,9 +87,9 @@ const Contact = ({ darkMode }) => {
   ];
 
   const socialLinks = [
-    { icon: <IoLogoInstagram size={24} />, label: 'Instagram' },
-    { icon: <IoLogoFacebook size={24} />, label: 'Facebook' },
-    { icon: <IoLogoTwitter size={24} />, label: 'Twitter' }
+    { icon: <IoLogoInstagram size={24} />, label: 'Instagram', link:'https://x.com/dominos'},
+    { icon: <IoLogoFacebook size={24} />, label: 'Facebook' , link :'https://www.facebook.com/Dominos'},
+    { icon: <IoLogoTwitter size={24} />, label: 'Twitter', link:'https://x.com/dominos'}
   ];
 
   return (
@@ -166,7 +166,7 @@ const Contact = ({ darkMode }) => {
                     name='name' 
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder='John Doe' 
+                    placeholder='Asok Manandhar' 
                     type='text' 
                     className={`w-full px-4 py-3 rounded-lg outline-none transition-all
                       ${errors.name 
@@ -197,7 +197,7 @@ const Contact = ({ darkMode }) => {
                     name='email' 
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder='john@example.com' 
+                    placeholder='newar@example.com' 
                     type='email'
                     className={`w-full px-4 py-3 rounded-lg outline-none transition-all
                       ${errors.email 
@@ -322,7 +322,8 @@ const Contact = ({ darkMode }) => {
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={social.label}
-                      href="#"
+                      href={social.link}
+                      target='_blank'
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className={`w-10 h-10 rounded-lg flex items-center justify-center

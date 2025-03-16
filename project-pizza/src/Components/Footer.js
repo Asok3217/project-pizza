@@ -11,16 +11,16 @@ const Footer = ({ darkMode }) => {
   ];
 
   const contactInfo = [
-    { icon: <IoLocationOutline size={20} />, text: '123 Pizza Street, NY 10001' },
-    { icon: <IoCallOutline size={20} />, text: '+1 (555) 123-4567' },
-    { icon: <IoMailOutline size={20} />, text: 'contact@pizzapalace.com' },
+    { icon: <IoLocationOutline size={20} />, text: 'Pokhara-1,Bagar' },
+    { icon: <IoCallOutline size={20} />, text: '+61 984256' },
+    { icon: <IoMailOutline size={20} />, text: 'contact@newarpizzapalace.com' },
     { icon: <IoTimeOutline size={20} />, text: 'Open daily: 10:00 AM - 10:00 PM' }
   ];
 
   const socialLinks = [
-    { icon: <IoLogoInstagram size={20} />, label: 'Instagram', href: '#' },
-    { icon: <IoLogoFacebook size={20} />, label: 'Facebook', href: '#' },
-    { icon: <IoLogoTwitter size={20} />, label: 'Twitter', href: '#' }
+    { icon: <IoLogoInstagram size={20} />, label: 'Instagram', href: 'https://x.com/dominos' },
+    { icon: <IoLogoFacebook size={20} />, label: 'Facebook', href: 'https://www.facebook.com/Dominos' },
+    { icon: <IoLogoTwitter size={20} />, label: 'Twitter', href: 'https://x.com/dominos' }
   ];
 
   const scrollToSection = (sectionId) => {
@@ -65,7 +65,7 @@ const Footer = ({ darkMode }) => {
                   <a
                     href={link.href}
                     className={`hover:translate-x-1 transition-transform duration-200 inline-block ${
-                      darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-blue-600'
+                      darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-blue-700'
                     }`}
                   >
                     {link.name}
@@ -104,6 +104,7 @@ const Footer = ({ darkMode }) => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target='_blank'
                   className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300 ${
                     darkMode 
                       ? 'bg-zinc-800 text-blue-400 hover:bg-zinc-700' 
@@ -120,7 +121,7 @@ const Footer = ({ darkMode }) => {
                 Opening Hours
               </h4>
               <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                Monday - Sunday
+                Sunday - Friday
                 <br />
                 10:00 AM - 10:00 PM
               </p>
