@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { IoLogoInstagram, IoLogoFacebook, IoLogoTwitter, IoMailOutline, IoCallOutline, IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
+import { IoPizzaOutline, IoLogoInstagram, IoLogoFacebook, IoLogoTwitter, IoMailOutline, IoCallOutline, IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 
-const Footer = () => {
+const Footer = ({ darkMode }) => {
   const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Menu', path: '/menu' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Home', href: '#home' },
+    { name: 'Menu', href: '#menu' },
+    { name: 'About', href: '#about' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   const contactInfo = [
@@ -18,47 +18,58 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <IoLogoInstagram size={24} />, name: 'Instagram', url: '#' },
-    { icon: <IoLogoFacebook size={24} />, name: 'Facebook', url: '#' },
-    { icon: <IoLogoTwitter size={24} />, name: 'Twitter', url: '#' }
+    { icon: <IoLogoInstagram size={20} />, label: 'Instagram', href: '#' },
+    { icon: <IoLogoFacebook size={20} />, label: 'Facebook', href: '#' },
+    { icon: <IoLogoTwitter size={20} />, label: 'Twitter', href: '#' }
   ];
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <footer className="bg-[#121619] text-white">
-      <div className="container mx-auto px-4 py-12">
+    <footer className={`${darkMode ? 'bg-black' : 'bg-white'} py-12`}>
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">Pizza Palace</h3>
-            <p className="text-gray-400 leading-relaxed">
-              Crafting perfect pizzas with passion since 2008. Every slice tells our story of quality and tradition.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors duration-300"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+            <div className="flex items-center space-x-2">
+              <IoPizzaOutline size={32} className={darkMode ? 'text-yellow-400' : 'text-blue-600'} />
+              <h2 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                Pizza Palace
+              </h2>
             </div>
+            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Crafting delicious pizzas with passion since 2010. Every slice tells our story of quality and tradition.
+            </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h3 className={`text-lg font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-300 block py-1"
+                  <a
+                    href={link.href}
+                    className={`hover:translate-x-1 transition-transform duration-200 inline-block ${
+                      darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-blue-600'
+                    }`}
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -66,42 +77,62 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+            <h3 className={`text-lg font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Contact Info
+            </h3>
             <ul className="space-y-3">
-              {contactInfo.map((info, index) => (
-                <li key={index} className="flex items-center space-x-3 text-gray-400">
-                  <span className="text-white">{info.icon}</span>
-                  <span>{info.text}</span>
+              {contactInfo.map((item, index) => (
+                <li key={index} className="flex items-center space-x-2">
+                  <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>
+                    {item.icon}
+                  </span>
+                  <span className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
+                    {item.text}
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Social Links & Newsletter */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Newsletter</h4>
-            <p className="text-gray-400 mb-4">
-              Subscribe to our newsletter for special offers and updates.
-            </p>
-            <form className="space-y-3">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 text-white placeholder-gray-400"
-              />
-              <button
-                type="submit"
-                className="w-full px-4 py-2 bg-white text-[#121619] rounded-lg font-medium hover:bg-gray-100 transition-colors duration-300"
-              >
-                Subscribe
-              </button>
-            </form>
+            <h3 className={`text-lg font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Follow Us
+            </h3>
+            <div className="flex space-x-3 mb-6">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300 ${
+                    darkMode 
+                      ? 'bg-zinc-800 text-blue-400 hover:bg-zinc-700' 
+                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+            <div className="mt-6">
+              <h4 className={`text-sm font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                Opening Hours
+              </h4>
+              <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Monday - Sunday
+                <br />
+                10:00 AM - 10:00 PM
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} Pizza Palace. All rights reserved.</p>
+        {/* Copyright */}
+        <div className={`mt-12 pt-8 border-t ${darkMode ? 'border-zinc-800' : 'border-gray-200'}`}>
+          <p className={`text-center text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            © {new Date().getFullYear()} Pizza Palace. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

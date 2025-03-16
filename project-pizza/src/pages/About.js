@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { IoRestaurantOutline, IoTimeOutline, IoStarOutline, IoPizzaOutline, IoLeafOutline, IoHeartOutline, IoTrophyOutline, IoEarthOutline } from 'react-icons/io5'
 
-const About = () => {
+const About = ({ darkMode }) => {
   const features = [
     {
       icon: <IoRestaurantOutline size={32} />,
@@ -73,162 +73,77 @@ const About = () => {
   };
 
   return (
-    <div className='min-h-screen pt-20 bg-gray-50'>
-      {/* Header Section */}
-      <div className='container mx-auto px-4'>
+    <div id="about" className={`min-h-screen pt-20 ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
+      <div className="container mx-auto px-4 py-12">
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className='text-center max-w-3xl mx-auto py-12'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-6xl mx-auto"
         >
-          <motion.h1 
-            variants={itemVariants}
-            className='text-4xl md:text-5xl font-bold text-[#121619] mb-6'
-          >
-            Our Story
-          </motion.h1>
-          <motion.p 
-            variants={itemVariants}
-            className='text-lg text-gray-600 leading-relaxed'
-          >
-            Welcome to Pizza Palace, where passion meets perfection. Since 2008, we've been crafting delicious pizzas that bring people together. Our commitment to quality ingredients and authentic recipes has made us a beloved part of the community.
-          </motion.p>
-        </motion.div>
-      </div>
-
-      {/* Stats Section */}
-      <div className='bg-[#121619] py-16'>
-        <div className='container mx-auto px-4'>
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className='grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto'
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                variants={itemVariants}
-                className='text-center group'
-              >
-                <div className='mb-4 text-white opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex justify-center'>
-                  {stat.icon}
-                </div>
-                <div className='text-3xl md:text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300'>
-                  {stat.number}
-                </div>
-                <div className='text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300'>
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className='container mx-auto px-4 py-16'>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-          className='text-center mb-12'
-        >
-          <motion.h2 
-            variants={itemVariants}
-            className='text-3xl md:text-4xl font-bold text-[#121619] mb-4'
-          >
-            Why Choose Us?
-          </motion.h2>
-          <motion.p 
-            variants={itemVariants}
-            className='text-lg text-gray-600 max-w-2xl mx-auto'
-          >
-            At Pizza Palace, we believe in creating more than just great pizzas. We're building a community of food lovers who appreciate quality and tradition.
-          </motion.p>
-        </motion.div>
-
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-          className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto'
-        >
-          {features.map((feature, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              key={feature.title}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className='bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300'
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="space-y-6"
             >
-              <div className='w-16 h-16 bg-[#121619] rounded-lg flex items-center justify-center text-white mb-4 transform transition-transform duration-300 group-hover:rotate-12'>
-                {feature.icon}
-              </div>
-              <h3 className='text-xl font-bold text-[#121619] mb-3'>{feature.title}</h3>
-              <p className='text-gray-600'>{feature.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Values Section */}
-      <div className='bg-white py-16'>
-        <div className='container mx-auto px-4'>
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className='max-w-4xl mx-auto'
-          >
-            <motion.div variants={itemVariants} className='text-center mb-12'>
-              <h2 className='text-3xl md:text-4xl font-bold text-[#121619] mb-4'>
-                Our Values
-              </h2>
-              <p className='text-lg text-gray-600 max-w-2xl mx-auto'>
-                These core values guide everything we do at Pizza Palace.
+              <h1 className="text-4xl font-bold mb-6">About Us</h1>
+              <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Welcome to Pizza Palace, where passion meets perfection in every slice. Since our establishment, 
+                we've been dedicated to crafting the finest pizzas using traditional recipes and premium ingredients.
               </p>
+              <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Our expert pizzaiolos combine years of experience with innovative techniques to create 
+                unique flavors that keep our customers coming back for more.
+              </p>
+              <div className={`space-y-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <h2 className="text-2xl font-semibold">What Sets Us Apart:</h2>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Fresh, locally-sourced ingredients</li>
+                  <li>Traditional wood-fired ovens</li>
+                  <li>Handcrafted dough made daily</li>
+                  <li>Signature sauce recipes</li>
+                  <li>Commitment to quality service</li>
+                </ul>
+              </div>
             </motion.div>
-
-            <div className='grid md:grid-cols-3 gap-8'>
-              {values.map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  variants={itemVariants}
-                  className='text-center'
-                >
-                  <div className='w-12 h-12 mx-auto bg-[#121619] rounded-full flex items-center justify-center text-white mb-4'>
-                    {value.icon}
-                  </div>
-                  <h3 className='text-xl font-bold text-[#121619] mb-2'>{value.title}</h3>
-                  <p className='text-gray-600'>{value.description}</p>
-                </motion.div>
-              ))}
-            </div>
-
+            
             <motion.div
-              variants={itemVariants}
-              className='text-center mt-12'
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="relative h-[400px] rounded-lg overflow-hidden shadow-xl"
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className='inline-block'
-              >
-                <a 
-                  href="/menu" 
-                  className='px-8 py-3 bg-[#121619] text-white rounded-full font-medium hover:bg-[#07090a] transition-colors duration-300 shadow-lg hover:shadow-xl'
-                >
-                  View Our Menu
-                </a>
-              </motion.div>
+              <img
+                src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"
+                alt="Pizza preparation"
+                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+              />
+              <div className={`absolute inset-0 ${darkMode ? 'bg-black/40' : 'bg-black/20'}`}></div>
             </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className={`mt-16 p-8 rounded-lg ${
+              darkMode ? 'bg-zinc-900' : 'bg-gray-50'
+            }`}
+          >
+            <h2 className="text-2xl font-semibold mb-6">Our Story</h2>
+            <p className={`text-lg mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Founded in 2010, Pizza Palace began as a small family-owned pizzeria with a big dream. 
+              Today, we've grown into a beloved local institution, serving our community with the same 
+              dedication to quality and service that we started with.
+            </p>
+            <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              We believe that great food brings people together, and we're proud to be a part of 
+              countless family gatherings, celebrations, and everyday moments in our customers' lives.
+            </p>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
