@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import pizzaBackground from '../Assets/pizza.jpeg'
 
-
-
 const Home = () => {
+  const scrollToMenu = () => {
+    const menuSection = document.getElementById('menu');
+    menuSection.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div 
       className='home w-full min-h-[100vh] flex items-center justify-center md:justify-start bg-no-repeat bg-cover font-sans bg-center px-4 md:px-0'
@@ -17,11 +19,12 @@ const Home = () => {
          <p className='text-xl sm:text-2xl md:text-4xl font-black text-[#121619] mb-6 md:mb-8'>
           PIZZA FOR ALL TASTES
          </p>
-         <Link to='/menu' className='inline-block w-full md:w-auto'>
-           <button className='w-full md:w-auto bg-[#121619] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-medium hover:bg-[#07090a] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5'>
-            ORDER NOW
-           </button>
-         </Link>
+         <button 
+           onClick={scrollToMenu}
+           className='w-full md:w-auto bg-[#121619] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-medium hover:bg-[#07090a] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5'
+         >
+           ORDER NOW
+         </button>
        </div>
     </div>
   )
