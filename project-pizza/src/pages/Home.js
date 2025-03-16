@@ -3,8 +3,21 @@ import pizzaBackground from '../Assets/pizza.jpeg'
 
 const Home = () => {
   const scrollToMenu = () => {
-    const menuSection = document.getElementById('menu');
-    menuSection.scrollIntoView({ behavior: 'smooth' });
+    try {
+      const menuSection = document.getElementById('menu');
+      if (menuSection) {
+        menuSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback: scroll by height of viewport
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      }
+    } catch (error) {
+      // If smooth scroll is not supported or fails
+      window.scrollTo(0, window.innerHeight);
+    }
   };
 
   return (
